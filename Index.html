@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Martín Iván | Construcción y Refacción</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        /* Variables y Reset */
+        :root {
+            --color-principal: #004d99; /* Azul principal del logo */
+            --color-secundario: #1a1a1a; /* Negro/Gris oscuro para fondo */
+            --color-texto-claro: #f4f4f4;
+            --color-texto-oscuro: #333;
+            --color-gris-claro: #cccccc;
+            --espaciado: 80px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--color-texto-oscuro);
+            background-color: var(--color-texto-claro);
+            scroll-behavior: smooth;
+        }
+
+        /* Utilidades */
+        .contenedor {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .seccion {
+            padding: var(--espaciado) 0;
+            text-align: center;
+        }
+
+        .bg-oscuro {
+            background-color: var(--color-secundario);
+            color: var(--color-texto-claro);
+        }
+
+        /* Tipografía */
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            border-bottom: 3px solid var(--color-principal);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+            font-weight: 400;
+        }
+        
+        p {
+            margin-bottom: 20px;
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-block;
+            background-color: var(--color-principal);
+            color: var(--color-texto-claro);
+            padding: 12px 25px;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-weight: 700;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            border: 2px solid var(--color-principal);
+        }
+
+        .btn:hover {
+            background-color: #003366; /* Un tono más oscuro */
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            color: var(--color-principal);
+            border: 2px solid var(--color-principal);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-principal);
+            color: var(--color-texto-claro);
+        }
+        .hero-outline {
+            color: var(--color-texto-claro);
+            border-color: var(--color-texto-claro);
+        }
+        
+        /* Header y Navegación */
+        header {
+            background-color: var(--color-secundario);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-nav {
+            /* Usamos una versión simple del logo para el header */
+            color: var(--color-texto-claro);
+            font-size: 1.5em;
+            font-weight: 700;
+            text-decoration: none;
+        }
+        .logo-nav img {
+            height: 48px;
+            display: block;
+        }
+        
+        nav ul {
+            list-style: none;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            color: var(--color-texto-claro);
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        nav ul li a:hover {
+            color: var(--color-principal);
+        }
+
+        /* Hero Section (Introducción) */
+        #hero {
+            height: 80vh; 
+            /* REEMPLAZAR la línea de background anterior por la de abajo: */
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('IMG/background1.jpg'); 
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--color-texto-claro);
+            text-align: center;
+        }
+
+        #hero h1 {
+            font-size: 3.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            color: var(--color-principal); /* Destacando el título */
+            text-transform: uppercase;
+        }
+
+        #hero p {
+            font-size: 1.4em;
+            margin-bottom: 30px;
+            font-weight: 300;
+        }
+        
+        /* Servicios */
+        .servicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .servicio-card {
+            background-color: var(--color-texto-oscuro);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            text-align: left;
+            border-top: 5px solid var(--color-principal);
+        }
+
+        .servicio-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .servicio-card i {
+            font-size: 2em;
+            color: var(--color-principal);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        /* Por qué Elegirnos */
+        .ventajas-lista {
+            display: flex;
+            flex-direction: column;
+            
+            max-width: 800px;
+            margin: 40px auto 0;
+            text-align: left;
+        }
+        
+        .ventaja-item {
+            display: flex;
+            align-items: center;
+            background-color: rgba(255, 255, 255, 0.05);
+            padding: 20px;
+            border-left: 4px solid var(--color-principal);
+            border-radius: 4px;
+        }
+        
+        .ventaja-item i {
+            font-size: 1.5em;
+            color: var(--color-principal);
+            margin-right: 20px;
+        }
+        
+        /* Contacto */
+        #contacto p {
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .contacto-info {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .contacto-item {
+            text-align: center;
+        }
+        
+        .contacto-item i {
+            font-size: 1.5em;
+            color: var(--color-principal);
+            margin-bottom: 10px;
+        }
+        
+        .contacto-item p {
+            margin: 0;
+            font-weight: 300;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--color-secundario);
+            color: var(--color-gris-claro);
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        footer p {
+            margin: 5px 0;
+        }
+
+        /* Iconos (Font Awesome - Sugerencia de iconos) */
+        /* Nota: Para que los iconos funcionen, se debe incluir la librería Font Awesome. */
+        /* Para este ejemplo, simularé la presencia de los iconos con un texto si no se carga la librería. */
+
+        /* Botón flotante de WhatsApp */
+        .whatsapp-btn {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background-color: #25D366;
+            color: #ffffff;
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 6px 18px rgba(37, 211, 102, 0.25);
+            text-decoration: none;
+            z-index: 2000;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+
+        .whatsapp-btn:hover {
+            transform: scale(1.07);
+            box-shadow: 0 10px 22px rgba(37, 211, 102, 0.32);
+        }
+
+        @media (max-width: 480px) {
+            .whatsapp-btn {
+                width: 48px;
+                height: 48px;
+                right: 16px;
+                bottom: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    
+    <header>
+        <div class="contenedor">
+            <nav>
+                <a href="#hero" class="logo-nav"><img src="IMG/logoblack.png" alt="Martín Iván" class="logo-img"></a>
+                <ul>
+                    <li><a href="#acerca">Acerca</a></li>
+                    <li><a href="#servicios">Servicios</a></li>
+                    <li><a href="#proyectos">Proyectos</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero">
+        <div class="contenedor">
+            
+            <h1>SERVICIOS DE CONSTRUCCIÓN Y REFACCIÓN</h1>
+            <p>Cimientos sólidos para tus ideas.</p>
+            <a href="#servicios" class="btn">Ver Servicios</a>
+            <a href="#contacto" class="btn btn-outline hero-outline">Solicitar Presupuesto</a>
+        </div>
+    </section>
+
+    <section id="acerca" class="seccion">
+        <div class="contenedor">
+            <h2>Quienes Somos?</h2>
+            <p>Somos una empresa dedicada a transformar y construir espacios con <b>calidad, compromiso y eficiencia</b>. Desde pequeñas refacciones hasta proyectos de construcción integral, nuestro enfoque minimalista y moderno <b> garantiza resultados funcionales y estéticos</b>.</p>
+            <p>Nuestra misión es hacer realidad tu visión, <b>cada proyecto a tiempo y dentro del presupuesto</b>. La experiencia es nuestro cimiento.</p>
+        </div>
+    </section>
+
+    <section id="servicios" class="seccion bg-oscuro">
+        <div class="contenedor">
+            <h2 style="color: var(--color-texto-claro); border-bottom-color: var(--color-texto-claro);">Servicios Integrales</h2>
+            <p style="color: var(--color-gris-claro);">Ofrecemos soluciones completas para todas tus necesidades de edificación y mejora.</p>
+
+            <div class="servicios-grid">
+                
+                <div class="servicio-card">
+                    <i class="fas fa-hammer"></i>
+                    <h3>Construcción de Obra Nueva</h3>
+                    <p>Desarrollo y ejecución de proyectos de cero, desde la cimentación hasta los acabados finales. Viviendas, locales comerciales y más.</p>
+                </div>
+                
+                <div class="servicio-card">
+                    <i class="fas fa-paint-roller"></i>
+                    <h3>Refacciones y Remodelaciones</h3>
+                    <p>Actualización y mejora de espacios existentes. Cocinas, baños, ampliaciones y modernización de fachadas con diseños modernos.</p>
+                </div>
+
+                <div class="servicio-card">
+                    <i class="fas fa-wrench"></i>
+                    <h3>Instalaciones y Mantenimiento</h3>
+                    <p>Servicios especializados en instalaciones eléctricas, sanitarias, gas, plomería y mantenimiento preventivo/correctivo.</p>
+                </div>
+                
+                <div class="servicio-card">
+                    <i class="fas fa-drafting-compass"></i>
+                    <h3>Asesoría y Diseño de Proyectos</h3>
+                    <p>Planificación profesional, gestión de permisos y diseño arquitectónico para optimizar la funcionalidad y estética de tu proyecto.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <section id="proyectos" class="seccion">
+        <div class="contenedor">
+            <h2>Por Qué Elegirnos?</h2>
+            <p>La confianza se construye con hechos. Estos son nuestros pilares:</p>
+
+            <div class="ventajas-lista bg-oscuro">
+                <div class="ventaja-item">
+                    <i class="fas fa-check-circle"></i>
+                    <div>
+                        <h3>Profesionalismo Garantizado</h3>
+                        <p>Equipo de arquitectos, ingenieros y constructores con experiencia comprobada en el sector.</p>
+                    </div>
+                </div>
+                <div class="ventaja-item">
+                    <i class="fas fa-shield-alt"></i>
+                    <div>
+                        <h3>Materiales de Primera</h3>
+                        <p>Utilizamos insumos de alta calidad y trabajamos con proveedores confiables para asegurar la durabilidad.</p>
+                    </div>
+                </div>
+                <div class="ventaja-item">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h3>Entrega a Tiempo</h3>
+                        <p>Compromiso con el cronograma. Cumplimos los plazos acordados, sin demoras innecesarias.</p>
+                    </div>
+                </div>
+            </div>
+            <a href="#contacto" class="btn" style="margin-top: 40px;">Ver Proyectos Realizados</a>
+        </div>
+    </section>
+
+    <section id="contacto" class="seccion">
+        <div class="contenedor">
+            <h2>Hablemos de tu Proyecto</h2>
+            <p>¿Tenés una idea o necesitas un presupuesto detallado? Contáctanos hoy mismo y recibe una asesoría sin cargo. Estamos listos para empezar a construir tu futuro.</p>
+            
+            <a href="mailto:contacto@martínivan.com" class="btn">Enviar Correo Electrónico</a>
+            <a href="tel:+541125556375" class="btn btn-outline">Llamar Ahora</a>
+
+            <div class="contacto-info">
+                <div class="contacto-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <p>Buenos Aires, Argentina</p>
+                </div>
+                <div class="contacto-item">
+                    <i class="fas fa-phone"></i>
+                    <p>+54 9 11 2555 6375</p>
+                </div>
+                <div class="contacto-item">
+                    <i class="fas fa-envelope"></i>
+                    <p>contacto@martínivan.com.ar</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="contenedor">
+            <p>&copy; 2025 MartínIván Construcción y Refacción. Todos los derechos reservados.</p>
+            <p>Diseño Web creado por Leaderty Software Development &copy;</p>.
+        </div>
+    </footer>
+</footer>
+
+    <!-- Botón flotante de WhatsApp -->
+    <a href="https://wa.me/541125556375?text=Hola%21%20queria%20solicitar%20un%20presupuesto." target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Contactar por WhatsApp">
+        <i class="fab fa-whatsapp" aria-hidden="true"></i>
+    </a>
+</body>
+</html>
